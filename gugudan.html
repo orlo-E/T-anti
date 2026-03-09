@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨반짝반짝 초강력 구구단✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-green: #00ff00;
+            --neon-yellow: #ffff00;
+            --neon-orange: #ff3c00;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background: #000;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(255, 0, 255, 0.2), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 255, 255, 0.2), transparent 25%);
+            background-size: 200% 200%;
+            animation: bgShift 3s ease-in-out infinite alternate;
+            color: #fff;
+            font-family: 'Black Han Sans', 'Comic Sans MS', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        h1 {
+            font-size: 5vw;
+            margin-bottom: 40px;
+            color: #fff;
+            letter-spacing: 5px;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px var(--neon-pink),
+                0 0 40px var(--neon-pink),
+                0 0 80px var(--neon-pink);
+            animation: pulseNeon 0.8s infinite alternate, wobble 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseNeon {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 80px var(--neon-pink); transform: scale(1); }
+            100% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue); color: var(--neon-yellow); transform: scale(1.05); }
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .gugudan-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dan-card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 4px solid var(--neon-green);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 15px var(--neon-green), inset 0 0 10px var(--neon-green);
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dan-card:nth-child(even) {
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 15px var(--neon-yellow), inset 0 0 10px var(--neon-yellow);
+        }
+
+        .dan-card:nth-child(3n) {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+        }
+        
+        .dan-card:nth-child(4n) {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px var(--neon-blue);
+        }
+
+        .dan-card:hover {
+            transform: scale(1.15) translateY(-15px) rotate(3deg);
+            box-shadow: 0 0 40px #fff, inset 0 0 20px #fff;
+            border-color: #fff !important;
+            z-index: 10;
+        }
+
+        .dan-card:hover:nth-child(even) { transform: scale(1.15) translateY(-15px) rotate(-3deg); }
+
+        .dan-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--neon-yellow);
+            text-shadow: 4px 4px 0 #ff0000, 0 0 15px var(--neon-yellow);
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-8px); }
+        }
+
+        .equation {
+            font-size: 1.8rem;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', Arial, sans-serif;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 2px 2px 0px #000;
+            transition: all 0.1s;
+        }
+
+        .equation:hover {
+            background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            transform: scale(1.2) rotate(1deg);
+            padding: 5px 0;
+        }
+
+        .number-highlight {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+        
+        .dan-card:nth-child(even) .number-highlight { color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow); }
+        .dan-card:nth-child(3n) .number-highlight { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink); }
+        .dan-card:nth-child(4n) .number-highlight { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+
+        /* 클릭 시 팡팡 터지는 이펙트 */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            width: 30px;
+            height: 30px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: explode 0.6s forwards ease-out;
+            z-index: 100;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { opacity: 1; }
+            100% { transform: scale(1.5) rotate(180deg) translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+
+        /* 춤추는 배경 아이콘들 */
+        .bling {
+            position: fixed;
+            font-size: 3.5rem;
+            animation: fall linear infinite;
+            z-index: -1;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(720deg); }
+        }
+
+        .footer-text {
+            margin-top: 50px;
+            font-size: 2rem;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px var(--neon-yellow);
+            animation: pulseNeon 1s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="main-title">✨ 울트라 판타스틱 킹왕짱 구구단 ✨</h1>
+    
+    <div class="gugudan-container" id="gugudan-container">
+        <!-- JS로 채워짐 -->
+    </div>
+
+    <div class="footer-text">💯 다 외우면 아이스크림 쏜다!!! 🚀</div>
+
+    <script>
+        const container = document.getElementById('gugudan-container');
+        
+        // 2단부터 9단까지 생성
+        for (let i = 2; i <= 9; i++) {
+            const card = document.createElement('div');
+            card.className = 'dan-card';
+            
+            let html = `<div class="dan-title">${i}단</div>`;
+            for (let j = 1; j <= 9; j++) {
+                html += `
+                    <div class="equation">
+                        <span>${i}</span> <span>X</span> <span>${j}</span> <span>=</span> <span class="number-highlight">${i*j}</span>
+                    </div>
+                `;
+            }
+            card.innerHTML = html;
+            
+            // 박스 클릭 시 파티클 이펙트
+            card.addEventListener('click', function(e) {
+                createSparkles(e.clientX, e.clientY);
+                
+                // 카드 흔들리는 애니메이션 속임수
+                this.style.transform = "scale(1.2) rotate(" + (Math.random() > 0.5 ? 5 : -5) + "deg)";
+                setTimeout(() => {
+                    this.style.transform = "";
+                }, 150);
+            });
+            
+            container.appendChild(card);
+        }
+
+        // 아무데나 클릭해도 파티클 터지게
+        document.body.addEventListener('click', function(e) {
+            if(e.target.className !== 'dan-card' && !e.target.closest('.dan-card')) {
+                createSparkles(e.clientX, e.clientY, 5);
+            }
+        });
+
+        // 파티클 생성 함수
+        function createSparkles(x, y, count = 12) {
+            const colors = ['#ff00ff', '#00ffff', '#00ff00', '#ffff00', '#ff3c00', '#ffffff'];
+            
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                
+                // 파티클 퍼지는 계산 (원형으로)
+                const angle = (Math.random() * Math.PI * 2);
+                const distance = 100 + Math.random() * 150;
+                const tx = Math.cos(angle) * distance + 'px';
+                const ty = Math.sin(angle) * distance + 'px';
+                
+                sparkle.style.setProperty('--tx', tx);
+                sparkle.style.setProperty('--ty', ty);
+                
+                // 랜덤 형광색
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                sparkle.style.backgroundColor = color;
+                sparkle.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}`;
+
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 600);
+            }
+        }
+
+        // 배경에 별/하트/음표 이모지 떨어지는 효과 (날티 포인트)
+        const emojis = ['⭐', '💫', '💖', '🎵', '⚡', '🔥', '💥', '✨', '🌈', '😎'];
+        setInterval(() => {
+            const bling = document.createElement('div');
+            bling.className = 'bling';
+            bling.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            bling.style.left = Math.random() * 100 + 'vw';
+            // 떨어지는 속도 랜덤
+            bling.style.animationDuration = Math.random() * 3 + 2 + 's';
+            // 크기도 랜덤
+            bling.style.transform = `scale(${Math.random() + 0.5})`;
+            
+            document.body.appendChild(bling);
+            setTimeout(() => bling.remove(), 5000);
+        }, 150); // 엄청 많이 떨어지도록 세팅
+    </script>
+</body>
+</html>
